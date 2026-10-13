@@ -32,8 +32,10 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
-from kit.effects import FX, parse as parse_fx, screen  # noqa: E402
-from kit.luts import LUTS, write_cube  # noqa: E402
+from kit.registry import FX, LUTS, OVERLAYS, SFX, TRANS, NEW  # noqa: E402
+from kit.effects import parse as parse_fx, screen  # noqa: E402
+from kit.effects2 import WINDOW  # noqa: E402
+from kit.luts import write_cube  # noqa: E402
 
 TRANSITIONS = [
     "fade", "fadeblack", "fadewhite", "dissolve", "wipeleft", "wiperight", "wipeup", "wipedown",
@@ -45,8 +47,7 @@ TRANSITIONS = [
     "revealleft", "revealright", "revealup", "revealdown",
 ]
 ALIASES = {"flash": "fadewhite", "black": "fadeblack", "white": "fadewhite", "zoom": "zoomin", "blur": "hblur",
-           "slide": "slideleft", "wipe": "wipeleft", "circle": "circleopen", "pixel": "pixelize",
-           "push": "slideleft", "cross": "dissolve", "gray": "fadegrays", "wind": "hlwind"}
+           "slide": "slideleft", "wipe": "wipeleft", "cross": "dissolve", "gray": "fadegrays", "wind": "hlwind"}
 
 
 # =================== أدوات ===================
@@ -199,9 +200,13 @@ def cmd_apply(a):
     W, H, fps, dur, has_audio = probe(a.input)
     tmp = tempfile.mkdtemp(prefix="montage_")
     fx_list = []
+    windows = []
     for s in a.fx:
         name, prm = parse_fx(s)
+        prm["_name"] = name
         fx_list.append((name, prm, {}))
+        if name in WINDOW:
+            windows.append((name, prm))
     overlays = [OverlaySrc(s, W, H, fps) for s in a.overlay]
     stickers = [StickerSrc(s, W, H, fps) for s in a.sticker]
     need_frames = bool(fx_list or overlays or stickers)
@@ -279,14 +284,44 @@ def cmd_apply(a):
                                "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
     writer = subprocess.Popen(out_cmd, stdin=subprocess.PIPE)
     fsize = W * H * 3
-    i = 0
     total = int(dur * fps)
-    while True:
+
+    def read():
         buf = reader.stdout.read(fsize)
         if len(buf) < fsize:
-            break
+            return None
+        return np.frombuffer(bytearray(buf), np.uint8).reshape(H, W, 3)
+
+    starts = {int(round(prm["t"] * fps)): (name, prm) for name, prm in windows}
+
+    def source():
+        """الإطارات بالترتيب، مع إعادة ترتيب فترات مؤثرات الزمن."""
+        j = 0
+        while True:
+            f = read()
+            if f is None:
+                return
+            if j in starts:
+                name, prm = starts[j]
+                n = max(2, int(round(prm["_d"] * fps)))
+                block = [f]
+                while len(block) < n:
+                    g = read()
+                    if g is None:
+                        break
+                    block.append(g)
+                m = len(block)
+                for k in range(m):
+                    q = WINDOW[name](k / max(1, m - 1), prm)
+                    yield block[min(m - 1, max(0, int(round(q * (m - 1)))))]
+                j += m
+                continue
+            yield f
+            j += 1
+
+    i = 0
+    for img in source():
         t = i / fps
-        img = np.frombuffer(bytearray(buf), np.uint8).reshape(H, W, 3)
         for name, prm, st in fx_list:
             t0, d = prm["t"], prm["_d"]
             if t0 <= t < t0 + d:
@@ -331,38 +366,50 @@ def cmd_join(a):
     td = a.td
     trans = []
     names = a.transition or ["fade"]
+    custom_pool = [k for k in TRANS if k in NEW["transitions"]]
     for k in range(len(clips) - 1):
         n = names[k % len(names)]
         if n == "random":
-            n = random.choice(["slideleft", "smoothleft", "circleopen", "zoomin", "fadewhite", "wipeleft",
-                               "radial", "dissolve", "hblur", "pixelize", "coverleft", "squeezeh"])
-        n = ALIASES.get(n, n)
-        if n not in TRANSITIONS:
+            n = random.choice(custom_pool)
+        if n not in TRANS:
+            n = ALIASES.get(n, n)
+        if n not in TRANS and n not in TRANSITIONS:
             raise SystemExit(f"انتقال غير موجود: {n}  (شغّل: edit.py list transitions)")
         trans.append(n)
+    use_py = any(n in TRANS and n not in TRANSITIONS for n in trans)
+    if use_py:
+        bad = [n for n in trans if n not in TRANS]
+        if bad:
+            raise SystemExit(f"لا يمكن خلط هذه الانتقالات مع الانتقالات الجديدة في نفس الأمر: {', '.join(bad)}")
 
     inputs, fc = [], []
-    for i, (c, info) in enumerate(zip(clips, infos)):
+    base_in = 1 if use_py else 0
+    if use_py:
+        inputs += ["-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "-"]
+    for c in clips:
         inputs += ["-i", c]
-    n_in = len(clips)
+    n_in = base_in + len(clips)
     for i, (c, info) in enumerate(zip(clips, infos)):
-        fc.append(f"[{i}:v]scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,"
-                  f"setsar=1,fps={fps},format=yuv420p,settb=AVTB[v{i}]")
+        if not use_py:
+            fc.append(f"[{i}:v]scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,"
+                      f"setsar=1,fps={fps},format=yuv420p,settb=AVTB[v{i}]")
         if info[4]:
-            fc.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=0:{info[3]}[a{i}]")
+            fc.append(f"[{base_in + i}:a]aresample=48000,aformat=channel_layouts=stereo,apad,atrim=0:{info[3]}[a{i}]")
         else:
             inputs += ["-f", "lavfi", "-t", str(info[3]), "-i", "anullsrc=r=48000:cl=stereo"]
             fc.append(f"[{n_in}:a]anull[a{i}]")
             n_in += 1
-    cur_v, cur_a = "[v0]", "[a0]"
+    cur_v, cur_a = ("[0:v]" if use_py else "[v0]"), "[a0]"
     length = infos[0][3]
     offsets = []
     for k in range(1, len(clips)):
         off = max(0.0, length - td)
         offsets.append(off)
-        fc.append(f"{cur_v}[v{k}]xfade=transition={trans[k - 1]}:duration={td}:offset={off:.3f}[vx{k}]")
+        if not use_py:
+            fc.append(f"{cur_v}[v{k}]xfade=transition={trans[k - 1]}:duration={td}:offset={off:.3f}[vx{k}]")
+            cur_v = f"[vx{k}]"
         fc.append(f"{cur_a}[a{k}]acrossfade=d={td}[ax{k}]")
-        cur_v, cur_a = f"[vx{k}]", f"[ax{k}]"
+        cur_a = f"[ax{k}]"
         length = length + infos[k][3] - td
 
     mix = []
@@ -377,19 +424,79 @@ def cmd_join(a):
     if mix:
         fc.append(f"{cur_a}{''.join(mix)}amix=inputs={1 + len(mix)}:duration=first:normalize=0,alimiter=limit=0.95[aout]")
         cur_a = "[aout]"
+    if use_py:
+        fc.append(f"{cur_v}format=yuv420p[vout]")
+        cur_v = "[vout]"
     cmd = ["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", ";".join(fc), "-map", cur_v, "-map", cur_a,
            "-c:v", "libx264", "-crf", str(a.crf), "-preset", "medium", "-pix_fmt", "yuv420p",
            "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", out]
-    subprocess.run(cmd, check=True)
+    if not use_py:
+        subprocess.run(cmd, check=True)
+    else:
+        _join_frames(clips, trans, W, H, fps, td, cmd)
     print(f"✓ تم: {out}  ({length:.1f}s)  الانتقالات: {', '.join(trans)}")
+
+
+def _join_frames(clips, trans, W, H, fps, td, cmd):
+    """يدمج المقاطع إطاراً إطاراً مع انتقالات بايثون."""
+    from collections import deque
+    fsize = W * H * 3
+    nt = max(2, int(round(td * fps)))
+    writer = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+
+    def frames(path):
+        p = subprocess.Popen(["ffmpeg", "-v", "error", "-i", path, "-vf",
+                              f"scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:black,"
+                              f"setsar=1,fps={fps}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+        while True:
+            buf = p.stdout.read(fsize)
+            if len(buf) < fsize:
+                break
+            yield np.frombuffer(bytearray(buf), np.uint8).reshape(H, W, 3)
+        p.wait()
+
+    def put(f):
+        writer.stdin.write(np.ascontiguousarray(f, np.uint8).tobytes())
+
+    tail = deque()
+    for ci, path in enumerate(clips):
+        gen = frames(path)
+        if ci > 0:
+            head = []
+            for f in gen:
+                head.append(f)
+                if len(head) >= nt:
+                    break
+            m = min(len(tail), len(head))
+            tl = list(tail)[-m:] if m else []
+            for x in list(tail)[: len(tail) - m]:
+                put(x)
+            fn = TRANS[trans[ci - 1]][0]
+            st = {}
+            for k in range(m):
+                put(fn(tl[k], head[k], (k + 0.5) / m, st))
+            tail = deque()
+            for f in head[m:]:
+                tail.append(f)
+        last = ci == len(clips) - 1
+        for f in gen:
+            tail.append(f)
+            if not last and len(tail) > nt:
+                put(tail.popleft())
+            elif last:
+                put(tail.popleft())
+    for f in tail:
+        put(f)
+    writer.stdin.close()
+    if writer.wait() != 0:
+        raise SystemExit("فشل الترميز")
 
 
 # =================== list ===================
 
 def cmd_list(a):
-    from kit.sfx import SFX
-    from kit.overlays import OVERLAYS
     what = a.what or "all"
+    star = lambda key, k: " ★جديد" if k in NEW[key] else ""
 
     def head(t):
         print(f"\n=== {t} ===")
@@ -398,23 +505,27 @@ def cmd_list(a):
         head("حركات ومؤثرات --fx")
         for k, (_, d, cat, ar) in FX.items():
             opts = ", ".join(f"{kk}={vv}" for kk, vv in d.items())
-            print(f"  {k:16} [{cat}] {ar}   ({opts})")
+            print(f"  {k:16} [{cat}] {ar}{star('fx', k)}   ({opts})")
     if what in ("all", "transitions"):
         head("انتقالات join --transition")
-        print("  " + " ".join(TRANSITIONS))
+        print("  جديدة (مخصصة):")
+        for k, (_, ar) in TRANS.items():
+            print(f"    {k:16} {ar}{star('transitions', k)}")
+        print("  كلاسيكية:")
+        print("    " + " ".join(TRANSITIONS))
         print("  اختصارات: " + ", ".join(f"{k}={v}" for k, v in ALIASES.items()) + ", random")
     if what in ("all", "sfx"):
         head("مؤثرات صوتية --sfx")
         for k, (_, cat, ar) in SFX.items():
-            print(f"  {k:16} [{cat}] {ar}")
+            print(f"  {k:16} [{cat}] {ar}{star('sfx', k)}")
     if what in ("all", "luts"):
         head("فلاتر ألوان --lut")
         for k, (_, ar) in LUTS.items():
-            print(f"  {k:16} {ar}")
+            print(f"  {k:16} {ar}{star('luts', k)}")
     if what in ("all", "overlays"):
         head("طبقات ضوئية --overlay")
         for k, (_, ar) in OVERLAYS.items():
-            print(f"  {k:16} {ar}")
+            print(f"  {k:16} {ar}{star('overlays', k)}")
     if what in ("all", "stickers"):
         from neon import STICKERS
         head("ستيكرات نيون --sticker")

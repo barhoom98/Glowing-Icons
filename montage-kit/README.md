@@ -2,19 +2,31 @@
 
 # 🎬 Montage Kit — عدّة المونتاج الكاملة
 
-كل ما يحتاجه المونتير في مجلد واحد: **42 حركة ومؤثر** · **56 انتقال** · **79 مؤثر صوتي** · **29 فلتر ألوان** · **20 طبقة ضوئية**، بالإضافة لستيكرات النيون من المجلد الرئيسي.
+كل ما يحتاجه المونتير في مجلد واحد: **73 حركة ومؤثر** · **84 انتقال** · **128 مؤثر صوتي** · **53 فلتر ألوان** · **39 طبقة ضوئية**، بالإضافة لستيكرات النيون من المجلد الرئيسي.
 
 كل شيء هنا مصنوع بالكود من الصفر، **بدون أي حقوق ملكية**، فتقدر تستخدمه في يوتيوب وتيك توك وإنستغرام والإعلانات التجارية بحرية.
 
-https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp4
+## ⭐ جديد 2026
+
+151 إضافة جديدة بطابع ترندات المونتاج الحالية (معلّمة بـ ⭐ في الجداول):
+
+- **حركات الزمن:** ترجيع، بومرانغ، Velocity (بطيء-سريع-بطيء)، Speed Ramp، تكرار سريع، فريمات أنمي متقطعة
+- **3D وتقسيم الشاشة:** ميلان ثلاثي الأبعاد، قلب بطاقة، الفيديو داخل بطاقة، لقطة بولارويد، شبكة، مرآة رباعية، كاليدوسكوب
+- **ستايلات:** حواف نيون متوهجة، كوميكس، كرتون، كاميرا حرارية، رؤية ليلية، أشعة X، داتاموش، حالم
+- **28 انتقال جديد بين المقاطع:** زوم عبور، تحطّم زجاج، قلب، نجمة، مكعب 3D، سحبة سريعة، تبديل بطاقات…
+- **49 مؤثر صوتي:** 808، ووش سينمائي، بوابة، لمعة أنمي، بونك، صراصير الصمت المحرج، تكسير زجاج…
+- **24 فلتر ألوان:** تنغستن 800، بورترا، Y2K ديجيتال، لاتيه، سماء أنمي، صحراء ملحمية…
+- **19 طبقة ضوئية:** خطوط سرعة أنمي، شبكة نيون ريترو، ألعاب نارية، شفق قطبي، بتلات، خطوط أنامورفيك…
+
+https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-2026.mp4
 
 ## الطريقة الأسهل: اطلب من Claude
 
 ارفع الفيديو في المحادثة واكتب ما تريده بكلامك، مثلاً:
 
-> اعمل زوم سريع على الثانية 3 مع صوت ووش، واهتزاز مع بوم عند الثانية 8، وحط فلتر سينمائي ولمعات في النهاية.
+> اعمل بومرانغ على الثانية 4 مع صوت سووش أنمي، وحواف نيون من الثانية 8، وفلتر تنغستن.
 
-> ادمج هالثلاث مقاطع بانتقالات سلايد مع صوت ووش لكل انتقال.
+> ادمج هالمقاطع بانتقال زوم عبور وتحطّم زجاج مع صوت ووش باص.
 
 ## محتويات المجلد
 
@@ -23,13 +35,15 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp
 | `sfx/` | مؤثرات صوتية WAV | اسحبها مباشرة لأي برنامج |
 | `luts/` | فلاتر ألوان `.cube` | CapCut: Adjust → LUT · Premiere: Lumetri → Creative → Look · DaVinci: LUTs |
 | `overlays/` | طبقات ضوئية MP4 على خلفية سوداء | ضعها فوق الفيديو واختر وضع الدمج **Screen** |
-| `previews/` | صور معاينة وفيديو تجريبي | — |
+| `previews/` | صور معاينة وفيديوهات تجريبية | — |
 | `kit/` | الكود الذي يولّد كل شيء | — |
 | `edit.py` | أداة تطبيق كل شيء على الفيديو | — |
 
 ## 🎥 الحركات والمؤثرات (`--fx`)
 
-كل مؤثر يأخذ `t=` (وقت البداية) و `d=` (المدة) وخياراته الخاصة. المؤثرات التي تتبع نقطة تقبل أيضاً `x=` و `y=` (من 0 إلى 1) لتحديد مركزها.
+كل مؤثر يأخذ `t=` (وقت البداية) و `d=` (المدة) وخياراته الخاصة. المؤثرات التي تتبع نقطة تقبل أيضاً `x=` و `y=` (من 0 إلى 1).
+
+> **مؤثرات الزمن** (`velocity` · `speed-ramp` · `slow-in` · `rewind` · `boomerang` · `repeat`) تعيد ترتيب إطارات الفترة نفسها، والصوت الأصلي يكمل بشكل طبيعي.
 
 | الاسم | النوع | الوصف | الخيارات الافتراضية |
 |---|---|---|---|
@@ -75,36 +89,111 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp
 | `echo` | تشويه | صدى حركة (أثر) | `amount=0.7`, `frames=8`, `d=2.0` |
 | `letterbox` | سينمائي | أشرطة سينمائية متحركة | `ratio=2.35`, `back=1`, `d=4.0` |
 | `freeze` | سينمائي | تجميد اللقطة | `bw=0`, `zoom=1.0`, `d=1.5` |
+| `velocity` ⭐ | زمن | بطيء-سريع-بطيء (Velocity) ترند تيك توك | `amount=1.0`, `d=1.5` |
+| `speed-ramp` ⭐ | زمن | سريع ثم بطيء للحظة المهمة | `amount=1.5`, `d=1.5` |
+| `slow-in` ⭐ | زمن | بطيء ثم يسرع | `amount=1.5`, `d=1.5` |
+| `rewind` ⭐ | زمن | ترجيع للخلف | `look=1`, `d=1.5` |
+| `boomerang` ⭐ | زمن | بومرانغ (ذهاب وعودة) | `d=1.5` |
+| `repeat` ⭐ | زمن | تكرار سريع (Stutter Edit) | `times=3`, `d=1.2` |
+| `stutter` ⭐ | زمن | فريمات متقطعة بطابع الأنمي | `hold=3`, `d=2.0` |
+| `perspective-tilt` ⭐ | 3D | ميلان ثلاثي الأبعاد | `angle=14.0`, `speed=2.0`, `d=3.0` |
+| `flip-3d` ⭐ | 3D | قلب البطاقة 3D | `dir=1`, `vertical=0`, `d=0.8` |
+| `frame-in` ⭐ | 3D | الفيديو داخل بطاقة فوق خلفية ضبابية | `scale=0.78`, `angle=0.0`, `d=3.0` |
+| `photo-snap` ⭐ | 3D | لقطة كاميرا بولارويد | `scale=0.72`, `angle=-5.0`, `d=1.5` |
+| `grid` ⭐ | تقسيم | شبكة مكررة | `n=3`, `d=0.6` |
+| `split-3` ⭐ | تقسيم | ثلاث نسخ جنب بعض | `d=1.5` |
+| `mirror-quad` ⭐ | تقسيم | مرآة رباعية | `d=1.5` |
+| `kaleidoscope` ⭐ | تقسيم | مشكال (كاليدوسكوب) | `segments=6`, `spin=0.6`, `d=2.0` |
+| `chroma-zoom` ⭐ | إيقاع | زوم وانفصال ألوان مع الإيقاع | `amount=1.08`, `bpm=120`, `d=4.0` |
+| `jello` ⭐ | تشويه | اهتزاز جيلي | `amount=1.0`, `d=1.0` |
+| `ripple` ⭐ | تشويه | موجة ماء من نقطة | `amount=1.0`, `d=1.2` |
+| `swirl` ⭐ | تشويه | دوامة | `amount=1.0`, `d=0.8` |
+| `datamosh` ⭐ | تشويه | داتاموش (تلطيخ الحركة) | `amount=1.0`, `d=1.5` |
+| `neon-edges` ⭐ | ستايل | حواف نيون متوهجة | `color=rainbow`, `dark=0.7`, `d=2.0` |
+| `halftone` ⭐ | ستايل | نقاط كوميكس | `size=1.0`, `color=0`, `d=2.0` |
+| `cartoon` ⭐ | ستايل | رسوم كرتونية | `levels=6`, `d=2.0` |
+| `thermal` ⭐ | ستايل | كاميرا حرارية | `style=1`, `d=2.0` |
+| `night-vision` ⭐ | ستايل | رؤية ليلية | `d=2.0` |
+| `x-ray` ⭐ | ستايل | أشعة X | `d=1.0` |
+| `anaglyph` ⭐ | ستايل | ثلاثي أبعاد أحمر/أزرق | `amount=1.0`, `d=2.0` |
+| `dreamy` ⭐ | ستايل | حالم متوهج | `amount=0.9`, `d=3.0` |
+| `spotlight` ⭐ | تركيز | إضاءة على عنصر وتعتيم الباقي | `r=0.18`, `amount=0.75`, `d=2.0` |
+| `tilt-shift` ⭐ | تركيز | مجسمات صغيرة (Miniature) | `d=3.0` |
+| `focus-pull` ⭐ | تركيز | سحب التركيز | `mode=1`, `amount=1.0`, `d=1.2` |
 
 ## 🔀 الانتقالات بين المقاطع (`join`)
 
+### انتقالات مخصصة ⭐
+
+| الاسم | الوصف |
+|---|---|
+| `zoom-blur` | زوم عبور مع تمويه (الأشهر) |
+| `zoom-out` | زوم للخارج |
+| `spin` | لفّة مع تمويه |
+| `whip-left` | سحبة سريعة لليسار |
+| `whip-right` | سحبة سريعة لليمين |
+| `whip-up` | سحبة سريعة للأعلى |
+| `whip-down` | سحبة سريعة للأسفل |
+| `glitch` | غلتش |
+| `rgb-split` | انفصال ألوان |
+| `flash-burn` | فلاش دافئ |
+| `light-leak` | تسريب ضوء |
+| `circle` | دائرة تكشف |
+| `heart` | قلب يكشف |
+| `star` | نجمة تكشف |
+| `diamond` | معيّن يكشف |
+| `split-panels` | شرائح تدخل متتابعة |
+| `stretch` | مطّ |
+| `ripple` | تموّج ماء |
+| `cube` | مكعب 3D |
+| `flip` | قلب بطاقة 3D |
+| `push` | دفع مع ظل |
+| `pixel` | بكسلة |
+| `shake-cut` | اهتزاز وقطع |
+| `blur-dissolve` | ذوبان مع تمويه |
+| `luma` | ظهور حسب الإضاءة |
+| `shatter` | تحطّم زجاج |
+| `card-swap` | تبديل بطاقات |
+| `bounce-slide` | انزلاق مع ارتداد |
+
+`--transition random` يختار انتقالاً مختلفاً من هذه القائمة لكل قطع.
+
+### انتقالات كلاسيكية
+
 `fade` · `fadeblack` · `fadewhite` · `dissolve` · `wipeleft` · `wiperight` · `wipeup` · `wipedown` · `slideleft` · `slideright` · `slideup` · `slidedown` · `smoothleft` · `smoothright` · `smoothup` · `smoothdown` · `circleopen` · `circleclose` · `circlecrop` · `rectcrop` · `vertopen` · `vertclose` · `horzopen` · `horzclose` · `radial` · `pixelize` · `zoomin` · `hblur` · `fadegrays` · `distance` · `diagtl` · `diagtr` · `diagbl` · `diagbr` · `hlslice` · `hrslice` · `vuslice` · `vdslice` · `squeezeh` · `squeezev` · `wipetl` · `wipetr` · `wipebl` · `wipebr` · `hlwind` · `hrwind` · `vuwind` · `vdwind` · `coverleft` · `coverright` · `coverup` · `coverdown` · `revealleft` · `revealright` · `revealup` · `revealdown`
 
-**اختصارات:** `flash`→`fadewhite` · `black`→`fadeblack` · `white`→`fadewhite` · `zoom`→`zoomin` · `blur`→`hblur` · `slide`→`slideleft` · `wipe`→`wipeleft` · `circle`→`circleopen` · `pixel`→`pixelize` · `push`→`slideleft` · `cross`→`dissolve` · `gray`→`fadegrays` · `wind`→`hlwind` · `random` (انتقال عشوائي لكل قطع)
+**اختصارات:** `flash`→`fadewhite` · `black`→`fadeblack` · `white`→`fadewhite` · `zoom`→`zoomin` · `blur`→`hblur` · `slide`→`slideleft` · `wipe`→`wipeleft` · `cross`→`dissolve` · `gray`→`fadegrays` · `wind`→`hlwind`
 
-> للانتقال داخل فيديو واحد عند نقطة قطع، استخدم مؤثرات: `zoom-transition` · `whip` · `spin` · `flash` · `glitch` · `dip`
+> الانتقالات المخصصة يمكن خلطها مع `fade` و `fadeblack` و `fadewhite` و `slideleft/right/up/down` في نفس الأمر.
+> للانتقال داخل فيديو واحد عند نقطة قطع، استخدم مؤثرات: `zoom-transition` · `whip` · `spin` · `flash` · `glitch` · `flip-3d`
 
 ## 🔊 المؤثرات الصوتية (`--sfx`)
 
-**انتقالات:** `whoosh-short` ووش قصير · `whoosh-long` ووش طويل · `whoosh-deep` ووش عميق بباص · `whoosh-double` ووش مزدوج · `whoosh-reverse` ووش يتصاعد وينقطع · `swoosh-fast` سووش سريع · `swish-air` هواء خفيف · `whip` ضربة سوط سريعة · `zoom-in` صوت زوم داخل · `zoom-out` صوت زوم خارج · `swipe` سحب سريع
+**انتقالات:** `whoosh-short` ووش قصير · `whoosh-long` ووش طويل · `whoosh-deep` ووش عميق بباص · `whoosh-double` ووش مزدوج · `whoosh-reverse` ووش يتصاعد وينقطع · `swoosh-fast` سووش سريع · `swish-air` هواء خفيف · `whip` ضربة سوط سريعة · `zoom-in` صوت زوم داخل · `zoom-out` صوت زوم خارج · `swipe` سحب سريع · `whoosh-cinematic` ⭐ ووش سينمائي مع ضربة · `bass-whoosh` ⭐ ووش باص · `glitch-whoosh` ⭐ ووش مع غلتش · `swoosh-up` ⭐ سووش صاعد · `swoosh-down` ⭐ سووش نازل · `tape-whoosh` ⭐ ووش شريط متموج
 
-**ضربات:** `impact-boom` بوم سينمائي · `cinematic-hit` ضربة سينمائية معدنية · `bass-drop` باص دروب · `sub-drop` هبوط باص عميق · `thud` ضربة مكتومة · `punch` لكمة · `slam` ضربة قوية · `braam` برااام سينمائي (ترايلر) · `vine-boom` بوم الميمز
+**ضربات:** `impact-boom` بوم سينمائي · `cinematic-hit` ضربة سينمائية معدنية · `bass-drop` باص دروب · `sub-drop` هبوط باص عميق · `thud` ضربة مكتومة · `punch` لكمة · `slam` ضربة قوية · `braam` برااام سينمائي (ترايلر) · `vine-boom` بوم الميمز · `metal-hit` ⭐ ضربة معدن · `hit-reverb` ⭐ ضربة بصدى · `trap-808` ⭐ باص 808 · `slap` ⭐ صفعة · `heartbeat-boom` ⭐ نبضتين ثم بوم · `glass-break` ⭐ تكسير زجاج · `ice-crack` ⭐ تشقق جليد · `lightning-crack` ⭐ رعد
 
-**تصاعد:** `riser-tension` تصاعد توتر 3 ثواني · `riser-short` تصاعد قصير · `downlifter` هبوط تدريجي · `reverse-cymbal` صنج معكوس · `crash` صنج كراش · `drum-roll` قرع طبول مع ضربة
+**تصاعد:** `riser-tension` تصاعد توتر 3 ثواني · `riser-short` تصاعد قصير · `downlifter` هبوط تدريجي · `reverse-cymbal` صنج معكوس · `crash` صنج كراش · `drum-roll` قرع طبول مع ضربة · `riser-hit` ⭐ تصاعد ينتهي بضربة · `reverse-hit` ⭐ ضربة معكوسة · `cinematic-rise` ⭐ تصاعد سينمائي بنبض
 
-**واجهات:** `pop` بوب · `bubble-pop` فقاعة · `click` نقرة · `mouse-click` كبسة ماوس · `tick` تك · `toggle` مفتاح تشغيل · `notification` تنبيه · `message` رسالة واصلة · `success` نجاح · `error` خطأ · `coin` عملة (ألعاب) · `level-up` ليفل أب (ألعاب) · `correct` إجابة صحيحة · `wrong-buzzer` إجابة خاطئة
+**واجهات:** `pop` بوب · `bubble-pop` فقاعة · `click` نقرة · `mouse-click` كبسة ماوس · `tick` تك · `toggle` مفتاح تشغيل · `notification` تنبيه · `message` رسالة واصلة · `success` نجاح · `error` خطأ · `coin` عملة (ألعاب) · `level-up` ليفل أب (ألعاب) · `correct` إجابة صحيحة · `wrong-buzzer` إجابة خاطئة · `pop-modern` ⭐ بوب حديث · `ui-hover` ⭐ مرور على زر · `ui-confirm` ⭐ تأكيد · `pluck-notify` ⭐ تنبيه نقر وتر · `subscribe-ding` ⭐ جرس اشتراك · `ding-dong` ⭐ جرس باب · `phone-vibrate` ⭐ اهتزاز جوال · `camera-focus` ⭐ تركيز كاميرا · `shutter-burst` ⭐ تصوير متتابع · `typing-soft` ⭐ كتابة ناعمة · `clock-alarm` ⭐ منبه
 
 **رقمي:** `glitch-1` غلتش · `glitch-2` غلتش طويل · `glitch-short` غلتش قصير · `static` تشويش · `data-beeps` بيانات تقنية · `bleep` صفير حجب الكلام · `countdown` عد تنازلي 3-2-1 · `laser` ليزر · `power-up` تشغيل · `power-down` إطفاء · `camera-flash` فلاش كاميرا
 
 **كرتون:** `boing` بوينغ · `slide-up` صفارة صاعدة · `slide-down` صفارة نازلة · `cartoon-pop` فلينة · `spring` زنبرك · `sad-trombone` ترومبون حزين (فشل) · `meme-bruh` نغمة ميمز هابطة · `ta-da` تا-دا
 
-**واقعية:** `camera-shutter` غالق كاميرا · `typing` كتابة على كيبورد · `typewriter-ding` جرس آلة كاتبة · `heartbeat` نبض قلب · `clock-tick` تكتكة ساعة · `cash-register` كاشير (كا-تشينغ) · `record-scratch` خدش أسطوانة · `tape-stop` توقف شريط · `rewind` ترجيع · `vinyl-crackle` طقطقة أسطوانة قديمة · `footsteps` خطوات · `door-knock` طرق باب
+**واقعية:** `camera-shutter` غالق كاميرا · `typing` كتابة على كيبورد · `typewriter-ding` جرس آلة كاتبة · `heartbeat` نبض قلب · `clock-tick` تكتكة ساعة · `cash-register` كاشير (كا-تشينغ) · `record-scratch` خدش أسطوانة · `tape-stop` توقف شريط · `rewind` ترجيع · `vinyl-crackle` طقطقة أسطوانة قديمة · `footsteps` خطوات · `door-knock` طرق باب · `balloon-pop` ⭐ انفجار بالون · `water-drop` ⭐ قطرة ماء · `splash` ⭐ رشة ماء · `fire-whoosh` ⭐ اشتعال نار
 
-**موسيقية:** `magic-shimmer` لمعة سحرية · `harp-gliss` هارب صاعد (حلم/ذكرى) · `dramatic-sting` دن دن دااان · `suspense-hit` ضربة غموض · `suspense-drone` خلفية توتر
+**موسيقية:** `magic-shimmer` لمعة سحرية · `harp-gliss` هارب صاعد (حلم/ذكرى) · `dramatic-sting` دن دن دااان · `suspense-hit` ضربة غموض · `suspense-drone` خلفية توتر · `deep-drone` ⭐ خلفية عميقة · `lofi-vinyl-stop` ⭐ توقف لوفاي
 
 **أجواء:** `wind` رياح · `rain` مطر · `crowd-cheer` تشجيع وتصفيق
 
+**خيال علمي:** `portal` ⭐ بوابة · `teleport` ⭐ انتقال آني · `warp` ⭐ قفزة فضائية · `sci-fi-scan` ⭐ مسح ضوئي · `robot-beeps` ⭐ روبوت · `electric-zap` ⭐ صعقة كهرباء · `radar-ping` ⭐ رادار
+
+**ميمز:** `bonk` ⭐ بونك · `crickets` ⭐ صراصير (صمت محرج) · `magic-poof` ⭐ بوف سحري · `anime-sparkle` ⭐ لمعة أنمي · `anime-swoosh` ⭐ سووش أنمي · `jump-8bit` ⭐ قفزة 8bit · `game-over` ⭐ خسارة لعبة · `success-fanfare` ⭐ احتفال فوز
+
 ## 🎨 فلاتر الألوان (`--lut`)
+
+![فلاتر 2026](previews/luts-2026.jpg)
 
 ![فلاتر الألوان](previews/luts.jpg)
 
@@ -139,10 +228,36 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp
 | `cross-process` | كروس بروسس |
 | `insta-fade` | إنستغرام باهت |
 | `day-for-night` | تحويل النهار لليل |
+| `tungsten-800` ⭐ | فيلم ليلي تنغستن (ترند 2026) |
+| `portra` ⭐ | بورتريه فيلم دافئ |
+| `slide-film` ⭐ | فيلم شرائح ألوان غنية |
+| `golden-film` ⭐ | فيلم ذهبي |
+| `bw-film` ⭐ | أبيض وأسود فيلم |
+| `y2k-digicam` ⭐ | كاميرا ديجيتال Y2K |
+| `polaroid` ⭐ | بولارويد |
+| `green-90s` ⭐ | تسعينات مخضر |
+| `nordic` ⭐ | إسكندنافي هادئ |
+| `clean-glow` ⭐ | مضيء نظيف (فلوق) |
+| `latte` ⭐ | بيج لاتيه |
+| `mint` ⭐ | نعناعي |
+| `lavender` ⭐ | لافندر |
+| `dark-academia` ⭐ | داكن أكاديمي |
+| `summer` ⭐ | صيفي |
+| `sunset-orange` ⭐ | غروب برتقالي |
+| `anime-sky` ⭐ | سماء أنمي |
+| `music-video-red` ⭐ | أحمر فيديو كليب |
+| `matte-black` ⭐ | أسود مطفي |
+| `high-key` ⭐ | إضاءة عالية بيضاء |
+| `dune` ⭐ | صحراء ملحمية برتقالية |
+| `night-city` ⭐ | مدينة ليلية |
+| `pastel-symmetry` ⭐ | باستيل حالم |
+| `cyber-teal` ⭐ | سايبر تركوازي |
 
 يمكن تخفيف قوة الفلتر: `--lut cinematic,strength=0.6`
 
 ## ✨ الطبقات الضوئية (`--overlay`)
+
+![طبقات 2026](previews/overlays-2026.jpg)
 
 ![الطبقات](previews/overlays.jpg)
 
@@ -168,6 +283,25 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp
 | `film-burn` | حرق فيلم (انتقال) |
 | `fog` | ضباب |
 | `lightning` | برق وعاصفة |
+| `speed-lines` ⭐ | خطوط سرعة أنمي |
+| `neon-grid` ⭐ | شبكة نيون ريترو مع شمس |
+| `fireworks` ⭐ | ألعاب نارية |
+| `aurora` ⭐ | شفق قطبي |
+| `bubbles` ⭐ | فقاعات صابون |
+| `petals` ⭐ | بتلات ورد متطايرة |
+| `fireflies` ⭐ | يراعات مضيئة |
+| `dust-motes` ⭐ | ذرات غبار في شعاع ضوء |
+| `anamorphic` ⭐ | خطوط ضوء أنامورفيك زرقاء |
+| `shooting-stars` ⭐ | شهب |
+| `glitter` ⭐ | جليتر لامع |
+| `crt` ⭐ | خطوط شاشة CRT |
+| `hologram` ⭐ | هولوغرام |
+| `light-flicker` ⭐ | وميض لمبة/شمعة |
+| `rain-glass` ⭐ | قطرات على زجاج |
+| `prism` ⭐ | انكسار قوس قزح |
+| `smoke` ⭐ | دخان صاعد |
+| `halation` ⭐ | هالة فيلم حمراء |
+| `y2k-stars` ⭐ | نجوم Y2K لامعة |
 
 خيارات: `t=` `d=` `opacity=` — تدخل وتخرج بنعومة تلقائياً.
 
@@ -176,22 +310,23 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo.mp
 ```bash
 pip install -r montage-kit/requirements.txt   # ويلزم ffmpeg
 
-# عرض كل شيء متوفر
+# عرض كل شيء متوفر (الجديد معلّم بنجمة)
 python3 montage-kit/edit.py list
-python3 montage-kit/edit.py list sfx
+python3 montage-kit/edit.py list transitions
 
 # تطبيق مؤثرات على فيديو
 python3 montage-kit/edit.py apply in.mp4 out.mp4 \
-  --fx "zoom-punch,t=3,d=1.5" \
-  --fx "shake,t=8,d=0.6" --sfx "impact-boom,t=8" \
-  --sfx "whoosh-short,t=2.9" \
-  --overlay "leak-warm,t=0,d=4,opacity=0.7" \
+  --fx "boomerang,t=4,d=1.2" --sfx "anime-swoosh,t=4" \
+  --fx "neon-edges,t=8,d=2" --sfx "electric-zap,t=8" \
+  --fx "spotlight,t=12,d=2,x=0.4,y=0.35" \
+  --overlay "speed-lines,t=6,d=1.5,opacity=0.6" \
   --sticker "arrow,t=10,pos=top-right" \
-  --lut cinematic --grain 0.3 --vignette 0.5 \
+  --lut tungsten-800 --grain 0.3 --vignette 0.5 \
   --music song.mp3,vol=0.25,duck=1
 
-# دمج مقاطع بانتقالات وصوت ووش
-python3 montage-kit/edit.py join a.mp4 b.mp4 c.mp4 out.mp4 --transition slideleft --td 0.5 --whoosh
+# دمج مقاطع بانتقالات مخصصة وصوت ووش
+python3 montage-kit/edit.py join a.mp4 b.mp4 c.mp4 out.mp4 \
+  --transition zoom-blur --transition shatter --td 0.6 --whoosh --whoosh-sfx bass-whoosh
 ```
 
 | خيار عام | المعنى |
@@ -203,6 +338,13 @@ python3 montage-kit/edit.py join a.mp4 b.mp4 c.mp4 out.mp4 --transition slidelef
 | `--music FILE,vol=,duck=1,start=` | موسيقى خلفية تنخفض تلقائياً عند الكلام |
 | `--voice 1.0` | مستوى صوت الفيديو الأصلي |
 | `--sticker` | ستيكر نيون (نفس صيغة `overlay.py` في المجلد الرئيسي) |
+
+| خيار للدمج `join` | المعنى |
+|---|---|
+| `--transition NAME` | كرّره لتحديد انتقال لكل قطع بالترتيب |
+| `--td 0.5` | مدة الانتقال |
+| `--whoosh` / `--whoosh-sfx` / `--whoosh-vol` | صوت مع كل انتقال |
+| `--size 1080x1920` | مقاس الفيديو الناتج (مثلاً عمودي للريلز) |
 
 ## إعادة توليد الملفات
 

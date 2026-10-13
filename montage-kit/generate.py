@@ -19,7 +19,8 @@ sys.path.insert(0, HERE)
 
 def gen_sfx(names):
     from scipy.io import wavfile
-    from kit.sfx import SFX, render, SR
+    from kit.sfx import render, SR
+    from kit.registry import SFX
     os.makedirs(os.path.join(HERE, "sfx"), exist_ok=True)
     for k in names or SFX:
         x = render(k)
@@ -28,7 +29,8 @@ def gen_sfx(names):
 
 
 def gen_luts(names):
-    from kit.luts import LUTS, write_cube
+    from kit.luts import write_cube
+    from kit.registry import LUTS
     os.makedirs(os.path.join(HERE, "luts"), exist_ok=True)
     for k in names or LUTS:
         write_cube(os.path.join(HERE, "luts", f"{k}.cube"), k)
@@ -36,7 +38,8 @@ def gen_luts(names):
 
 
 def gen_overlays(names):
-    from kit.overlays import OVERLAYS, W, H, FPS
+    from kit.overlays import W, H, FPS
+    from kit.registry import OVERLAYS
     os.makedirs(os.path.join(HERE, "overlays"), exist_ok=True)
     for k in names or OVERLAYS:
         out = os.path.join(HERE, "overlays", f"{k}.mp4")
