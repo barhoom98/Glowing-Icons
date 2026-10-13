@@ -2,13 +2,25 @@
 
 # 🎬 Montage Kit — عدّة المونتاج الكاملة
 
-كل ما يحتاجه المونتير في مجلد واحد: **73 حركة ومؤثر** · **84 انتقال** · **128 مؤثر صوتي** · **53 فلتر ألوان** · **39 طبقة ضوئية**، بالإضافة لستيكرات النيون من المجلد الرئيسي.
+كل ما يحتاجه المونتير في مجلد واحد: **99 حركة ومؤثر** · **102 انتقال** · **167 مؤثر صوتي** · **71 فلتر ألوان** · **54 طبقة ضوئية**، بالإضافة لستيكرات النيون من المجلد الرئيسي.
 
 كل شيء هنا مصنوع بالكود من الصفر، **بدون أي حقوق ملكية**، فتقدر تستخدمه في يوتيوب وتيك توك وإنستغرام والإعلانات التجارية بحرية.
 
-## ⭐ جديد 2026
+## 🔥 جديد: الدفعة 3
 
-151 إضافة جديدة بطابع ترندات المونتاج الحالية (معلّمة بـ ⭐ في الجداول):
+116 إضافة جديدة (معلّمة بـ 🔥 في الجداول):
+
+- **26 حركة ومؤثر:** سلِت سكان، أثر ألوان خلف الحركة، تعريض طويل، إبقاء لون واحد (Color Pop)، ديوتون، بوب آرت، فرز بكسلات، ASCII، رسم بالرصاص، ألوان مائية، عين السمكة، عدسة مكبرة، Vertigo، إطار داخل إطار، تلفزيون يشتغل/ينطفئ، رمشة عين، شريط فيلم، إطار جوال، ظهور كالحبر، ومضات وتوهج على الإيقاع
+- **18 انتقال:** حبر، حرق بنار، تلفزيون، ستائر، مربعات تنقلب، دوامة، مسح ألوان، سلِت سكان، شرائح غلتش، فقاعات، باب ينفتح، انشقاق قطري، نفق، لطخة سرعة، مشكال، وهج عدسة، فرز بكسلات، قزحية
+- **39 مؤثر صوتي:** طبول للمونتاج على الإيقاع (كيك، سنير، تصفيقة، هاي هات)، أجواء طبيعة (عصافير، أمواج، جدول، نار مخيم، ليل، رعد، ريح)، ميمز (بوق احتفال، صفرة إعجاب، دن دن)، وأصوات واقعية (صفحة، قلم، سحّاب، عملات)
+- **18 فلتر ألوان:** طبيعة خضراء، غابة ضبابية، خريف، شتاء، الساعة الزرقاء، شروق، استوائي، بحر، صحراء، طعام، فلوق، كوداكروم، إكتاكروم، فيلم 500T، أبيض وأسود مع الأحمر
+- **15 طبقة ضوئية:** قفزة فضائية، انعكاسات ماء، أوراق خريف، وهج شمس، أشعة بين الأشجار، أضواء مسرح، ليزر، مطر فلوس، غبار سحري، كرات ضوء، واجهة HUD، انفجار قصاصات، شرر، ثلج كثيف، أوساخ عدسة
+
+https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-batch3.mp4
+
+## ⭐ جديد 2026 (الدفعة 2)
+
+151 إضافة بطابع ترندات المونتاج الحالية (معلّمة بـ ⭐ في الجداول):
 
 - **حركات الزمن:** ترجيع، بومرانغ، Velocity (بطيء-سريع-بطيء)، Speed Ramp، تكرار سريع، فريمات أنمي متقطعة
 - **3D وتقسيم الشاشة:** ميلان ثلاثي الأبعاد، قلب بطاقة، الفيديو داخل بطاقة، لقطة بولارويد، شبكة، مرآة رباعية، كاليدوسكوب
@@ -43,6 +55,8 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 
 كل مؤثر يأخذ `t=` (وقت البداية) و `d=` (المدة) وخياراته الخاصة. المؤثرات التي تتبع نقطة تقبل أيضاً `x=` و `y=` (من 0 إلى 1).
 
+> 🔥 مؤثرات مثل `slit-scan` و `rgb-trail` و `light-trails` تعتمد على الحركة في الفيديو، فتظهر أوضح على اللقطات المتحركة.
+>
 > **مؤثرات الزمن** (`velocity` · `speed-ramp` · `slow-in` · `rewind` · `boomerang` · `repeat`) تعيد ترتيب إطارات الفترة نفسها، والصوت الأصلي يكمل بشكل طبيعي.
 
 | الاسم | النوع | الوصف | الخيارات الافتراضية |
@@ -120,41 +134,85 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 | `spotlight` ⭐ | تركيز | إضاءة على عنصر وتعتيم الباقي | `r=0.18`, `amount=0.75`, `d=2.0` |
 | `tilt-shift` ⭐ | تركيز | مجسمات صغيرة (Miniature) | `d=3.0` |
 | `focus-pull` ⭐ | تركيز | سحب التركيز | `mode=1`, `amount=1.0`, `d=1.2` |
+| `rgb-trail` 🔥 | زمن | أثر ألوان خلف الحركة | `lag=4`, `d=2.0` |
+| `light-trails` 🔥 | زمن | تعريض طويل (أثر الأضواء) | `decay=0.92`, `d=2.0` |
+| `slit-scan` 🔥 | زمن | سلِت سكان: كل سطر من لحظة مختلفة | `frames=20`, `dir=1`, `d=2.0` |
+| `color-pop` 🔥 | لون | إبقاء لون واحد والباقي أبيض وأسود | `color=red`, `width=12`, `d=3.0` |
+| `duotone` 🔥 | لون | لونان فقط (ستايل بوسترات) | `dark=#1a0b3d`, `light=#ff8a3d`, `d=2.0` |
+| `hue-cycle` 🔥 | لون | دوران ألوان قوس قزح | `speed=0.5`, `d=2.0` |
+| `pop-art` 🔥 | ستايل | بوب آرت | `d=1.5` |
+| `pixel-sort` 🔥 | ستايل | فرز بكسلات (غلتش فني) | `threshold=0.45`, `d=1.0` |
+| `ascii` 🔥 | ستايل | حروف ASCII | `size=1.2`, `color=green`, `d=1.5` |
+| `sketch` 🔥 | ستايل | رسم بالرصاص | `color=0`, `d=2.0` |
+| `watercolor` 🔥 | ستايل | ألوان مائية | `d=2.0` |
+| `emboss` 🔥 | ستايل | نقش بارز | `d=1.0` |
+| `fisheye` 🔥 | عدسة | عين السمكة | `amount=1.0`, `d=2.0` |
+| `magnify` 🔥 | عدسة | عدسة مكبرة على نقطة | `r=0.14`, `zoom=2.0`, `d=2.0` |
+| `vertigo` 🔥 | عدسة | دولي زوم (Vertigo) | `amount=1.0`, `d=1.5` |
+| `dizzy` 🔥 | عدسة | دوخة ورؤية مزدوجة | `amount=1.0`, `d=2.0` |
+| `droste` 🔥 | عدسة | إطار داخل إطار لانهائي | `scale=0.72`, `depth=5`, `spin=0.0`, `d=2.0` |
+| `tv-off` 🔥 | شاشة | إطفاء تلفزيون قديم | `d=0.6` |
+| `tv-on` 🔥 | شاشة | تشغيل تلفزيون قديم | `d=0.6` |
+| `blink` 🔥 | شاشة | رمشة عين | `d=0.5` |
+| `film-strip` 🔥 | شاشة | الفيديو داخل شريط فيلم | `angle=-6.0`, `d=3.0` |
+| `phone-frame` 🔥 | شاشة | الفيديو داخل إطار جوال | `angle=0.0`, `d=3.0` |
+| `ink-reveal` 🔥 | شاشة | ظهور كالحبر | `seed=1`, `color=black`, `d=1.2` |
+| `beat-flash` 🔥 | إيقاع | ومضة مع كل ضربة | `bpm=120`, `color=white`, `amount=0.5`, `d=4.0` |
+| `glow-pulse` 🔥 | إيقاع | توهج ينبض مع الإيقاع | `bpm=120`, `amount=1.0`, `d=4.0` |
+| `shake-rgb` 🔥 | إيقاع | اهتزاز مع انفصال ألوان | `amount=1.0`, `d=0.6` |
 
 ## 🔀 الانتقالات بين المقاطع (`join`)
 
-### انتقالات مخصصة ⭐
+### انتقالات مخصصة (⭐ و 🔥)
 
 | الاسم | الوصف |
 |---|---|
-| `zoom-blur` | زوم عبور مع تمويه (الأشهر) |
-| `zoom-out` | زوم للخارج |
-| `spin` | لفّة مع تمويه |
-| `whip-left` | سحبة سريعة لليسار |
-| `whip-right` | سحبة سريعة لليمين |
-| `whip-up` | سحبة سريعة للأعلى |
-| `whip-down` | سحبة سريعة للأسفل |
-| `glitch` | غلتش |
-| `rgb-split` | انفصال ألوان |
-| `flash-burn` | فلاش دافئ |
-| `light-leak` | تسريب ضوء |
-| `circle` | دائرة تكشف |
-| `heart` | قلب يكشف |
-| `star` | نجمة تكشف |
-| `diamond` | معيّن يكشف |
-| `split-panels` | شرائح تدخل متتابعة |
-| `stretch` | مطّ |
-| `ripple` | تموّج ماء |
-| `cube` | مكعب 3D |
-| `flip` | قلب بطاقة 3D |
-| `push` | دفع مع ظل |
-| `pixel` | بكسلة |
-| `shake-cut` | اهتزاز وقطع |
-| `blur-dissolve` | ذوبان مع تمويه |
-| `luma` | ظهور حسب الإضاءة |
-| `shatter` | تحطّم زجاج |
-| `card-swap` | تبديل بطاقات |
-| `bounce-slide` | انزلاق مع ارتداد |
+| `zoom-blur` ⭐ | زوم عبور مع تمويه (الأشهر) |
+| `zoom-out` ⭐ | زوم للخارج |
+| `spin` ⭐ | لفّة مع تمويه |
+| `whip-left` ⭐ | سحبة سريعة لليسار |
+| `whip-right` ⭐ | سحبة سريعة لليمين |
+| `whip-up` ⭐ | سحبة سريعة للأعلى |
+| `whip-down` ⭐ | سحبة سريعة للأسفل |
+| `glitch` ⭐ | غلتش |
+| `rgb-split` ⭐ | انفصال ألوان |
+| `flash-burn` ⭐ | فلاش دافئ |
+| `light-leak` ⭐ | تسريب ضوء |
+| `circle` ⭐ | دائرة تكشف |
+| `heart` ⭐ | قلب يكشف |
+| `star` ⭐ | نجمة تكشف |
+| `diamond` ⭐ | معيّن يكشف |
+| `split-panels` ⭐ | شرائح تدخل متتابعة |
+| `stretch` ⭐ | مطّ |
+| `ripple` ⭐ | تموّج ماء |
+| `cube` ⭐ | مكعب 3D |
+| `flip` ⭐ | قلب بطاقة 3D |
+| `push` ⭐ | دفع مع ظل |
+| `pixel` ⭐ | بكسلة |
+| `shake-cut` ⭐ | اهتزاز وقطع |
+| `blur-dissolve` ⭐ | ذوبان مع تمويه |
+| `luma` ⭐ | ظهور حسب الإضاءة |
+| `shatter` ⭐ | تحطّم زجاج |
+| `card-swap` ⭐ | تبديل بطاقات |
+| `bounce-slide` ⭐ | انزلاق مع ارتداد |
+| `ink` 🔥 | حبر ينتشر |
+| `burn` 🔥 | حرق بحافة نار |
+| `tv-switch` 🔥 | تبديل تلفزيون قديم |
+| `blinds` 🔥 | ستائر تدور |
+| `mosaic-flip` 🔥 | مربعات تنقلب |
+| `swirl` 🔥 | دوامة |
+| `rgb-wipe` 🔥 | مسح بالألوان الثلاثة |
+| `slit-scan` 🔥 | سلِت سكان |
+| `glitch-slice` 🔥 | شرائح غلتش |
+| `bubbles` 🔥 | فقاعات تكشف |
+| `doors` 🔥 | باب ينفتح |
+| `diagonal` 🔥 | انشقاق قطري |
+| `warp-tunnel` 🔥 | نفق |
+| `smear` 🔥 | لطخة سرعة |
+| `kaleido` 🔥 | مشكال |
+| `flare-cut` 🔥 | وهج عدسة يخفي القطع |
+| `pixel-sort` 🔥 | فرز بكسلات |
+| `iris` 🔥 | قزحية (ستايل الأفلام القديمة) |
 
 `--transition random` يختار انتقالاً مختلفاً من هذه القائمة لكل قطع.
 
@@ -164,24 +222,24 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 
 **اختصارات:** `flash`→`fadewhite` · `black`→`fadeblack` · `white`→`fadewhite` · `zoom`→`zoomin` · `blur`→`hblur` · `slide`→`slideleft` · `wipe`→`wipeleft` · `cross`→`dissolve` · `gray`→`fadegrays` · `wind`→`hlwind`
 
-> الانتقالات المخصصة يمكن خلطها مع `fade` و `fadeblack` و `fadewhite` و `slideleft/right/up/down` في نفس الأمر.
+> كل الانتقالات المخصصة (⭐ و🔥) تُخلط مع بعضها، ومع `fade` و `fadeblack` و `fadewhite` و `slideleft/right/up/down` في نفس الأمر.
 > للانتقال داخل فيديو واحد عند نقطة قطع، استخدم مؤثرات: `zoom-transition` · `whip` · `spin` · `flash` · `glitch` · `flip-3d`
 
 ## 🔊 المؤثرات الصوتية (`--sfx`)
 
-**انتقالات:** `whoosh-short` ووش قصير · `whoosh-long` ووش طويل · `whoosh-deep` ووش عميق بباص · `whoosh-double` ووش مزدوج · `whoosh-reverse` ووش يتصاعد وينقطع · `swoosh-fast` سووش سريع · `swish-air` هواء خفيف · `whip` ضربة سوط سريعة · `zoom-in` صوت زوم داخل · `zoom-out` صوت زوم خارج · `swipe` سحب سريع · `whoosh-cinematic` ⭐ ووش سينمائي مع ضربة · `bass-whoosh` ⭐ ووش باص · `glitch-whoosh` ⭐ ووش مع غلتش · `swoosh-up` ⭐ سووش صاعد · `swoosh-down` ⭐ سووش نازل · `tape-whoosh` ⭐ ووش شريط متموج
+**انتقالات:** `whoosh-short` ووش قصير · `whoosh-long` ووش طويل · `whoosh-deep` ووش عميق بباص · `whoosh-double` ووش مزدوج · `whoosh-reverse` ووش يتصاعد وينقطع · `swoosh-fast` سووش سريع · `swish-air` هواء خفيف · `whip` ضربة سوط سريعة · `zoom-in` صوت زوم داخل · `zoom-out` صوت زوم خارج · `swipe` سحب سريع · `whoosh-cinematic` ⭐ ووش سينمائي مع ضربة · `bass-whoosh` ⭐ ووش باص · `glitch-whoosh` ⭐ ووش مع غلتش · `swoosh-up` ⭐ سووش صاعد · `swoosh-down` ⭐ سووش نازل · `tape-whoosh` ⭐ ووش شريط متموج · `uplifter` 🔥 رايزر هوائي · `sub-whoosh` 🔥 ووش باص عميق · `digital-transition` 🔥 انتقال رقمي · `glitch-stutter` 🔥 تقطيع غلتش · `vinyl-scratch-short` 🔥 سكراتش قصير
 
 **ضربات:** `impact-boom` بوم سينمائي · `cinematic-hit` ضربة سينمائية معدنية · `bass-drop` باص دروب · `sub-drop` هبوط باص عميق · `thud` ضربة مكتومة · `punch` لكمة · `slam` ضربة قوية · `braam` برااام سينمائي (ترايلر) · `vine-boom` بوم الميمز · `metal-hit` ⭐ ضربة معدن · `hit-reverb` ⭐ ضربة بصدى · `trap-808` ⭐ باص 808 · `slap` ⭐ صفعة · `heartbeat-boom` ⭐ نبضتين ثم بوم · `glass-break` ⭐ تكسير زجاج · `ice-crack` ⭐ تشقق جليد · `lightning-crack` ⭐ رعد
 
 **تصاعد:** `riser-tension` تصاعد توتر 3 ثواني · `riser-short` تصاعد قصير · `downlifter` هبوط تدريجي · `reverse-cymbal` صنج معكوس · `crash` صنج كراش · `drum-roll` قرع طبول مع ضربة · `riser-hit` ⭐ تصاعد ينتهي بضربة · `reverse-hit` ⭐ ضربة معكوسة · `cinematic-rise` ⭐ تصاعد سينمائي بنبض
 
-**واجهات:** `pop` بوب · `bubble-pop` فقاعة · `click` نقرة · `mouse-click` كبسة ماوس · `tick` تك · `toggle` مفتاح تشغيل · `notification` تنبيه · `message` رسالة واصلة · `success` نجاح · `error` خطأ · `coin` عملة (ألعاب) · `level-up` ليفل أب (ألعاب) · `correct` إجابة صحيحة · `wrong-buzzer` إجابة خاطئة · `pop-modern` ⭐ بوب حديث · `ui-hover` ⭐ مرور على زر · `ui-confirm` ⭐ تأكيد · `pluck-notify` ⭐ تنبيه نقر وتر · `subscribe-ding` ⭐ جرس اشتراك · `ding-dong` ⭐ جرس باب · `phone-vibrate` ⭐ اهتزاز جوال · `camera-focus` ⭐ تركيز كاميرا · `shutter-burst` ⭐ تصوير متتابع · `typing-soft` ⭐ كتابة ناعمة · `clock-alarm` ⭐ منبه
+**واجهات:** `pop` بوب · `bubble-pop` فقاعة · `click` نقرة · `mouse-click` كبسة ماوس · `tick` تك · `toggle` مفتاح تشغيل · `notification` تنبيه · `message` رسالة واصلة · `success` نجاح · `error` خطأ · `coin` عملة (ألعاب) · `level-up` ليفل أب (ألعاب) · `correct` إجابة صحيحة · `wrong-buzzer` إجابة خاطئة · `pop-modern` ⭐ بوب حديث · `ui-hover` ⭐ مرور على زر · `ui-confirm` ⭐ تأكيد · `pluck-notify` ⭐ تنبيه نقر وتر · `subscribe-ding` ⭐ جرس اشتراك · `ding-dong` ⭐ جرس باب · `phone-vibrate` ⭐ اهتزاز جوال · `camera-focus` ⭐ تركيز كاميرا · `shutter-burst` ⭐ تصوير متتابع · `typing-soft` ⭐ كتابة ناعمة · `clock-alarm` ⭐ منبه · `magic-wand` 🔥 عصا سحرية · `level-complete` 🔥 إنهاء مرحلة · `notification-soft` 🔥 تنبيه ناعم · `enter-key` 🔥 زر Enter · `mouse-scroll` 🔥 تمرير الماوس · `timer-end` 🔥 انتهاء المؤقت · `heartbeat-fast` 🔥 نبض سريع (توتر)
 
 **رقمي:** `glitch-1` غلتش · `glitch-2` غلتش طويل · `glitch-short` غلتش قصير · `static` تشويش · `data-beeps` بيانات تقنية · `bleep` صفير حجب الكلام · `countdown` عد تنازلي 3-2-1 · `laser` ليزر · `power-up` تشغيل · `power-down` إطفاء · `camera-flash` فلاش كاميرا
 
 **كرتون:** `boing` بوينغ · `slide-up` صفارة صاعدة · `slide-down` صفارة نازلة · `cartoon-pop` فلينة · `spring` زنبرك · `sad-trombone` ترومبون حزين (فشل) · `meme-bruh` نغمة ميمز هابطة · `ta-da` تا-دا
 
-**واقعية:** `camera-shutter` غالق كاميرا · `typing` كتابة على كيبورد · `typewriter-ding` جرس آلة كاتبة · `heartbeat` نبض قلب · `clock-tick` تكتكة ساعة · `cash-register` كاشير (كا-تشينغ) · `record-scratch` خدش أسطوانة · `tape-stop` توقف شريط · `rewind` ترجيع · `vinyl-crackle` طقطقة أسطوانة قديمة · `footsteps` خطوات · `door-knock` طرق باب · `balloon-pop` ⭐ انفجار بالون · `water-drop` ⭐ قطرة ماء · `splash` ⭐ رشة ماء · `fire-whoosh` ⭐ اشتعال نار
+**واقعية:** `camera-shutter` غالق كاميرا · `typing` كتابة على كيبورد · `typewriter-ding` جرس آلة كاتبة · `heartbeat` نبض قلب · `clock-tick` تكتكة ساعة · `cash-register` كاشير (كا-تشينغ) · `record-scratch` خدش أسطوانة · `tape-stop` توقف شريط · `rewind` ترجيع · `vinyl-crackle` طقطقة أسطوانة قديمة · `footsteps` خطوات · `door-knock` طرق باب · `balloon-pop` ⭐ انفجار بالون · `water-drop` ⭐ قطرة ماء · `splash` ⭐ رشة ماء · `fire-whoosh` ⭐ اشتعال نار · `camera-zoom-whir` 🔥 محرك زوم كاميرا · `page-turn` 🔥 قلب صفحة · `pen-scribble` 🔥 شخبطة قلم · `zipper` 🔥 سحّاب · `door-slam` 🔥 إغلاق باب بقوة · `coins` 🔥 عملات معدنية
 
 **موسيقية:** `magic-shimmer` لمعة سحرية · `harp-gliss` هارب صاعد (حلم/ذكرى) · `dramatic-sting` دن دن دااان · `suspense-hit` ضربة غموض · `suspense-drone` خلفية توتر · `deep-drone` ⭐ خلفية عميقة · `lofi-vinyl-stop` ⭐ توقف لوفاي
 
@@ -189,9 +247,15 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 
 **خيال علمي:** `portal` ⭐ بوابة · `teleport` ⭐ انتقال آني · `warp` ⭐ قفزة فضائية · `sci-fi-scan` ⭐ مسح ضوئي · `robot-beeps` ⭐ روبوت · `electric-zap` ⭐ صعقة كهرباء · `radar-ping` ⭐ رادار
 
-**ميمز:** `bonk` ⭐ بونك · `crickets` ⭐ صراصير (صمت محرج) · `magic-poof` ⭐ بوف سحري · `anime-sparkle` ⭐ لمعة أنمي · `anime-swoosh` ⭐ سووش أنمي · `jump-8bit` ⭐ قفزة 8bit · `game-over` ⭐ خسارة لعبة · `success-fanfare` ⭐ احتفال فوز
+**ميمز:** `bonk` ⭐ بونك · `crickets` ⭐ صراصير (صمت محرج) · `magic-poof` ⭐ بوف سحري · `anime-sparkle` ⭐ لمعة أنمي · `anime-swoosh` ⭐ سووش أنمي · `jump-8bit` ⭐ قفزة 8bit · `game-over` ⭐ خسارة لعبة · `success-fanfare` ⭐ احتفال فوز · `airhorn` 🔥 بوق الاحتفال (Airhorn) · `whistle-up` 🔥 صفرة صاعدة · `wolf-whistle` 🔥 صفرة إعجاب · `dun-dun` 🔥 دن دن (درامي) · `tada-short` 🔥 تادا قصيرة · `record-rewind-long` 🔥 ترجيع طويل
+
+**طبول:** `kick` 🔥 طبلة كيك · `snare` 🔥 سنير · `clap` 🔥 تصفيقة · `hihat` 🔥 هاي هات مغلق · `open-hat` 🔥 هاي هات مفتوح · `tom-fill` 🔥 فيل طبول نازل · `beat-4` 🔥 إيقاع جاهز ثانيتين · `cymbal-swell` 🔥 صنج يتصاعد
+
+**طبيعة:** `forest-birds` 🔥 عصافير في غابة · `ocean-waves` 🔥 أمواج بحر · `stream` 🔥 جدول ماء · `campfire` 🔥 نار مخيم · `night-ambience` 🔥 ليل وصراصير · `thunder-roll` 🔥 رعد متدحرج · `wind-gust` 🔥 هبّة ريح
 
 ## 🎨 فلاتر الألوان (`--lut`)
+
+![فلاتر الدفعة 3](previews/luts-batch3.jpg)
 
 ![فلاتر 2026](previews/luts-2026.jpg)
 
@@ -252,10 +316,30 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 | `night-city` ⭐ | مدينة ليلية |
 | `pastel-symmetry` ⭐ | باستيل حالم |
 | `cyber-teal` ⭐ | سايبر تركوازي |
+| `lush-green` 🔥 | طبيعة خضراء غنية |
+| `moody-forest` 🔥 | غابة ضبابية داكنة |
+| `autumn` 🔥 | خريفي ذهبي |
+| `winter` 🔥 | شتوي بارد |
+| `blue-hour` 🔥 | الساعة الزرقاء |
+| `sunrise-peach` 🔥 | شروق خوخي |
+| `tropical` 🔥 | شاطئ استوائي |
+| `ocean-deep` 🔥 | بحر عميق |
+| `desert-gold` 🔥 | صحراء ذهبية |
+| `food-pop` 🔥 | طعام شهي |
+| `warm-vlog` 🔥 | فلوق دافئ |
+| `kodachrome` 🔥 | كوداكروم كلاسيكي |
+| `ektachrome` 🔥 | إكتاكروم أزرق |
+| `cine-500t` 🔥 | فيلم ليلي 500T |
+| `red-noir` 🔥 | أبيض وأسود مع الأحمر |
+| `neon-pink` 🔥 | نيون وردي |
+| `cool-shadows` 🔥 | ظلال باردة |
+| `sepia-gold` 🔥 | بني ذهبي |
 
 يمكن تخفيف قوة الفلتر: `--lut cinematic,strength=0.6`
 
 ## ✨ الطبقات الضوئية (`--overlay`)
+
+![طبقات الدفعة 3](previews/overlays-batch3.jpg)
 
 ![طبقات 2026](previews/overlays-2026.jpg)
 
@@ -302,6 +386,21 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 | `smoke` ⭐ | دخان صاعد |
 | `halation` ⭐ | هالة فيلم حمراء |
 | `y2k-stars` ⭐ | نجوم Y2K لامعة |
+| `hyperspace` 🔥 | قفزة فضائية (نجوم تتمدد) |
+| `caustics` 🔥 | انعكاسات ماء (تحت الماء) |
+| `falling-leaves` 🔥 | أوراق خريف تتساقط |
+| `sun-glare` 🔥 | وهج شمس بحلقات عدسة |
+| `god-rays` 🔥 | أشعة نازلة بين الأشجار |
+| `concert-beams` 🔥 | أضواء مسرح متحركة |
+| `laser-show` 🔥 | عرض ليزر |
+| `money-rain` 🔥 | مطر فلوس |
+| `magic-dust` 🔥 | غبار سحري حلزوني |
+| `light-orbs` 🔥 | كرات ضوء ملونة |
+| `hud` 🔥 | واجهة مستقبلية HUD |
+| `confetti-burst` 🔥 | انفجار قصاصات احتفال |
+| `sparks` 🔥 | شرر لحام |
+| `snow-heavy` 🔥 | ثلج كثيف مع ريح |
+| `lens-dirt` 🔥 | أوساخ عدسة مع ضوء |
 
 خيارات: `t=` `d=` `opacity=` — تدخل وتخرج بنعومة تلقائياً.
 

@@ -32,7 +32,7 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, ROOT)
 
-from kit.registry import FX, LUTS, OVERLAYS, SFX, TRANS, NEW  # noqa: E402
+from kit.registry import FX, LUTS, OVERLAYS, SFX, TRANS, NEW, NEW3, BASIC, badge  # noqa: E402
 from kit.effects import parse as parse_fx, screen  # noqa: E402
 from kit.effects2 import WINDOW  # noqa: E402
 from kit.luts import write_cube  # noqa: E402
@@ -366,7 +366,7 @@ def cmd_join(a):
     td = a.td
     trans = []
     names = a.transition or ["fade"]
-    custom_pool = [k for k in TRANS if k in NEW["transitions"]]
+    custom_pool = [k for k in TRANS if k not in BASIC]
     for k in range(len(clips) - 1):
         n = names[k % len(names)]
         if n == "random":
@@ -496,7 +496,7 @@ def _join_frames(clips, trans, W, H, fps, td, cmd):
 
 def cmd_list(a):
     what = a.what or "all"
-    star = lambda key, k: " ★جديد" if k in NEW[key] else ""
+    star = badge  # 🔥 الدفعة 3، ⭐ الدفعة 2
 
     def head(t):
         print(f"\n=== {t} ===")
