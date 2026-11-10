@@ -45,6 +45,7 @@ https://github.com/barhoom98/glowing-icons/raw/main/montage-kit/previews/demo-20
 | المجلد | المحتوى | الاستخدام في برامج المونتاج |
 |---|---|---|
 | `sfx/` | مؤثرات صوتية WAV | اسحبها مباشرة لأي برنامج |
+| `sfx-pack-v1/` | 🔊 مكتبة أصوات Quizzawi: 77 صوت حقيقي مقصوص من فيديوهات مؤثرات، ومعهم 65 من `sfx/`، مرتّبين على 8 مجلدات. الفهرس بـ `README.md` و`catalog.csv` | اسحبها مباشرة. الأصوات اللي عليها ⚠️ فيها حقوق |
 | `luts/` | فلاتر ألوان `.cube` | CapCut: Adjust → LUT · Premiere: Lumetri → Creative → Look · DaVinci: LUTs |
 | `overlays/` | طبقات ضوئية MP4 على خلفية سوداء | ضعها فوق الفيديو واختر وضع الدمج **Screen** |
 | `previews/` | صور معاينة وفيديوهات تجريبية | — |
